@@ -1,0 +1,6 @@
+#RewriteEngine On
+##RewriteBase /
+#RewriteBase /Book_Reading_Site
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.+)$ index.php [QSA,L]
