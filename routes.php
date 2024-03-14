@@ -6,7 +6,6 @@ require_once __DIR__ . '/router.php';
 // ##################################################
 // ##################################################
 $baseUrl = $_SERVER["SERVER_NAME"] . "/The_Saraswoti_Project";
-echo $baseUrl;
 // Static GET
 // In the URL -> http://localhost
 // The output -> Index
