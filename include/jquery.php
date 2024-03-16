@@ -1,0 +1,1 @@
+<script src="../internals/library/jquery/jquery-3.7.1.min.js"></script>

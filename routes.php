@@ -12,6 +12,8 @@ $baseUrl = $_SERVER["SERVER_NAME"] . "/The_Saraswoti_Project";
 
 //get method
 get($baseUrl . "", "frontend/home.php");
+get($baseUrl . "/uploadBook", "frontend/uploadBook.php");
+get($baseUrl . "/login", "frontend/loginregister.php");
 
 //post method
 post($baseUrl . "/post", "frontend/post.php");

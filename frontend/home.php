@@ -1,3 +1,9 @@
+<?php
+include 'backend/functions.php';
+
+echo generate_uuid();
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
