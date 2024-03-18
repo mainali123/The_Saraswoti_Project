@@ -1,6 +1,8 @@
 console.log("loaded successfully")
 
 $(document).ready(function () {
+
+    // Signup
     const signupButton = document.getElementById('signup-button');
 
     signupButton.addEventListener('click', (event) => {
@@ -35,7 +37,9 @@ $(document).ready(function () {
             success: (response) => {
                 console.log(response)
                 if (response.success) {
-                    success('You have successfully registered in our website. You will be redirected in few seconds...','Registration Successfull')
+                    success('You have successfully registered in our website. Please login','Registration Successful')
+                } else {
+                    error(response.message, 'Registration Failed')
                 }
             },
             error: (response) => {
