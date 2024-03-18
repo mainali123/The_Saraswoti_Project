@@ -24,24 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     exit;
                 }
             } catch (Exception $exception) {
-                echo json_encode(['success' => false, 'message' => $exception, 'errorLine' => __LINE__]);
+                echo json_encode(['success' => false, 'message' => $exception]);
                 exit;
             }
 
-            /*$query = "SELECT past_password from user_info where email = $email";
-            try {
-                $res = $pdo->query($query);
-                $results = json_decode($res['past_password'], true);
-                $results[] = $password;
-            } catch (Exception $exception) {
-                echo json_encode(['success' => false, 'message' => $exception]);
-                exit;
-            }*/
-
             $past_password = json_encode($password);
 
-            $curr_date = date('Y-m-d H:i:s');
-            $query = "INSERT INTO user_info (user_name, password, email, last_login, past_password) VALUES ('$name', '$password', '$email', '$curr_date', '$past_password')";
+            $query = "INSERT INTO user_info (user_name, password, email, past_password) VALUES ('$name', '$password', '$email', '', '$past_password')";
 
             try {
                 $res = $pdo->exec($query);
@@ -53,6 +42,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             } catch (Exception $exception) {
                 echo json_encode(['success' => false, 'message' => 'Login error2']);
+            }
+        } elseif ($action == 'login') {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $query = "SELECT email, password, last_login FROM user_info WHERE email='$email'";
+            try {
+                $res = $pdo->query($query);
+
+                //$curr_date = date('Y-m-d H:i:s');
+
+                //array_push($last_login, $curr_date);
+                //$last_login = json_encode($last_login);
+                if ($res->rowCount() < 1) {
+                    echo json_encode(['success' => false, 'message' => "User don't exist. Please login"]);
+                } else {
+                    $row = $res->fetch();
+                    if ($row['password'] == $password) {
+                        $query = "UPDATE user_info SET last_login = '' WHERE email='$email'";
+                        echo json_encode(['success' => true, 'message' => 'Invalid Password']);
+                    } else {
+                        echo json_encode(['success' => false, 'message' => 'Invalid Password']);
+                    }
+                }
+            } catch (Exception $exception) {
+                echo json_encode(['success' => false, 'message' => $exception]);
             }
         }
     } else {

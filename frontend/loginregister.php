@@ -16,10 +16,9 @@ include "../backend/dbConnect.php";
     <link rel="stylesheet" href="../internals/style/loginregister.css">
 
     <?php
-        include '../include/jquery.php';
-        include '../include/toastNotification.php';
+    include '../include/jquery.php';
+    include '../include/toastNotification.php';
     ?>
-
 
 
 </head>
@@ -53,10 +52,10 @@ include "../backend/dbConnect.php";
 
             </div>
             <span class="form__span">or use your email account</span>
-            <input class="form__input" type="text" placeholder="Email">
-            <input class="form__input" type="password" placeholder="Password"><a class="form__link">Forgot your
-                password?</a>
-            <button class="form__button button submit">SIGN IN</button>
+            <input class="form__input" type="text" id="login-email" placeholder="Email">
+            <input class="form__input" type="password" id="login-password" placeholder="Password">
+            <a class="form__link">Forgot your password?</a>
+            <button class="form__button button submit" id="login-button">SIGN IN</button>
         </form>
     </div>
     <div class="switch" id="switch-cnt">

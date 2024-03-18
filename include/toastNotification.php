@@ -22,22 +22,22 @@
         'hideMethod': 'fadeOut',
     }
 
-    function success(header, message) {
+    function success(message, header) {
         toastr.options.closeHtml = '<button class="closebtn"><i class="bi bi-x"></i></button>';
         toastr.success(header, message);
     }
 
-    function info(header, message) {
+    function info(message, header) {
         toastr.options.closeHtml = '<button class="closebtn"><i class="bi bi-x"></i></button>';
         toastr.info(header, message);
     }
 
-    function warning(header, message) {
+    function warning(message, header) {
         toastr.options.closeHtml = '<button class="closebtn"><i class="bi bi-x"></i></button>';
         toastr.warning(header, message);
     }
 
-    function error(header, message) {
+    function error(message, header) {
         toastr.options.closeHtml = '<button class="closebtn"><i class="bi bi-x"></i></button>';
         toastr.error(header, message);
     }

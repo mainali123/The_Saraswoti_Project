@@ -6,7 +6,6 @@ $(document).ready(function () {
     const signupButton = document.getElementById('signup-button');
 
     signupButton.addEventListener('click', (event) => {
-        console.log("Clicked")
         let name = document.getElementById('register-name').value
         let email = document.getElementById('register-email').value
         let password = document.getElementById('register-password').value
@@ -26,8 +25,6 @@ $(document).ready(function () {
         formData.append('password', password);
         formData.append('action', 'signup')
 
-        console.log(formData)
-
         $.ajax({
             url: '../backend/postHandler.php',
             type: 'POST',
@@ -43,8 +40,46 @@ $(document).ready(function () {
                 }
             },
             error: (response) => {
-                console.log(response)
+                info('Server Error', 'Server Error')
+                // console.log(response)
             }
         })
+    })
+
+    // Login button
+    const loginButton = document.getElementById('login-button');
+    loginButton.addEventListener('click', (event) => {
+        let email = document.getElementById('login-email').value
+        let password = document.getElementById('login-password').value
+
+        if (password.length < 8) {
+            error('Invalid Password', 'Password error')
+            return;
+        }
+
+        let formData = new FormData()
+        formData.append('email', email)
+        formData.append('password', password)
+        formData.append('action', 'login')
+
+        $.ajax({
+            url: '../backend/postHandler.php',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: (response) => {
+                if (response.success) {
+                    success('Login Successful. Redirecting in few seconds...', 'Login Success')
+                } else {
+                    error(response.message, 'Login Error')
+                }
+            },
+            error: (response) => {
+                console.log(response)
+                info('Server Error', 'Server Error')
+            }
+        })
+
     })
 })
